@@ -1,0 +1,762 @@
+swagger: '2.0'
+info:
+  description: |
+    This is user module
+  version: 1.0.0
+  title: User Module
+  contact:
+    email: dingchun0516@gmail.com
+
+paths:
+  /user:
+    post:
+      tags:
+      - user
+      summary: Create user
+      description: This API is used for creating user account
+      operationId: createUser
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/User4Register'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+  /user/login:
+    post:
+      tags:
+      - user
+      summary: User login to the website
+      operationId: userLogin
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/UserLogin'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /user/logout:
+    put:
+      tags:
+      - user
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/UserLogout'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /user/userList:
+    get:
+      tags:
+      - user
+      summary: query all users
+      operationId: getUserList
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiUserListResponse'
+  /user/userList/{page}/{size}:
+    get:
+      tags:
+      - user
+      summary: query all users and paginate query results
+      operationId: getUserListWithPagination
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: path
+        required: true
+        type: integer
+      - name: size
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiUserListResponse'
+
+  /user/{userId}:
+    get:
+      tags:
+      - user
+      summary: Get user info
+      description: This API is used for fetching all user info.
+      operationId: getUsers
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiUserResponse'
+    put:
+      tags:
+      - user
+      summary: Update user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiUserResponse'
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      description: This can only be done by admin account.
+      operationId: deleteUser
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /admin:
+    post:
+      tags:
+      - admin
+      summary: Create admin account
+      description: This API is used for creating admin account
+      operationId: createAdmin
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Admin4Register'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+  /admin/login:
+    post:
+      tags:
+      - admin
+      summary: Admin login to the website
+      operationId: adminLogin
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/AdminLogin'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /admin/logout:
+    put:
+      tags:
+      - admin
+      summary: Logs out current logged in admin session
+      operationId: logoutAdmin
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/AdminLogout'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /admin/adminList:
+    get:
+      tags:
+      - admin
+      summary: query all admins
+      operationId: getAdminList
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiAdminListResponse'
+  /admin/adminList/{page}/{size}:
+    get:
+      tags:
+      - admin
+      summary: query all admins and paginate query results
+      operationId: getAdminListWithPagination
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: path
+        required: true
+        type: integer
+      - name: size
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiAdminListResponse'
+  /admin/{adminId}:
+    get:
+      tags:
+      - admin
+      summary: Get admin info
+      description: This API is used for fetching all admin info.
+      operationId: getAdmins
+      produces:
+      - application/json
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiAdminResponse'
+    put:
+      tags:
+      - admin
+      summary: Update admin
+      description: This can only be done by the logged in admin.
+      operationId: updateAdmin
+      produces:
+      - application/json
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Admin'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiAdminResponse'
+    delete:
+      tags:
+      - admin
+      summary: Delete admin account
+      description: This can only be done by admin account.
+      operationId: deleteAdmin
+      produces:
+      - application/json
+      parameters:
+      - name: adminId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  
+  /researcher:
+    post:
+      tags:
+      - researcher
+      summary: Create researcher account
+      description: This API is used for creating researcher account
+      operationId: createResearcher
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Researcher4Register'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+  /researcher/login:
+    post:
+      tags:
+      - researcher
+      summary: Researcher login to the website
+      operationId: researcherLogin
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ResearcherLogin'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /researcher/logout:
+    put:
+      tags:
+      - researcher
+      summary: Logs out current logged in researcher session
+      operationId: logoutResearcher
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ResearcherLogout'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+  /researcher/researcherList:
+    get:
+      tags:
+      - researcher
+      summary: query all researchers
+      operationId: getResearcherList
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResearcherListResponse'
+  /researcher/researcherList/{page}/{size}:
+    get:
+      tags:
+      - researcher
+      summary: query all researchers and paginate query results
+      operationId: getResearcherListWithPagination
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: path
+        required: true
+        type: integer
+      - name: size
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResearcherListResponse'
+  /researcher/{researcherId}:
+    get:
+      tags:
+      - researcher
+      summary: Get researcher info
+      description: This API is used for fetching all researcher info.
+      operationId: getResearchers
+      produces:
+      - application/json
+      parameters:
+      - name: researcherId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResearcherResponse'
+    put:
+      tags:
+      - researcher
+      summary: Update researcher
+      description: This can only be done by the logged in researcher.
+      operationId: updateResearcher
+      produces:
+      - application/json
+      parameters:
+      - name: researcherId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Researcher'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResearcherResponse'
+    delete:
+      tags:
+      - researcher
+      summary: Delete researcher account
+      description: This can only be done by researcher account.
+      operationId: deleteResearcher
+      produces:
+      - application/json
+      parameters:
+      - name: researcherId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+            
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: http://petstore.swagger.io/oauth/dialog
+    flow: implicit
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  #user model
+  User4Register:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+      partnerGender:
+        type: string
+      email:
+        type: string
+      phoneNumber:
+        type: string
+      postcode:
+        type: string
+  User4List:
+    type: object
+    properties:
+      username:
+        type: string
+      partnerGender:
+        type: string
+      email:
+        type: string
+      phoneNumber:
+        type: string
+      postcode:
+        type: string
+      progress:
+        type: integer
+  #user model
+  User:
+    type: object
+    properties:
+      userId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+      partnerGender:
+        type: string
+      email:
+        type: string
+      phoneNumber:
+        type: string
+      postcode:
+        type: string
+      progress:
+        type: integer
+      state:
+        type: integer
+      partId:
+        type: string
+  Progress:
+    type: object
+    properties:
+      userId:
+        type: string
+      progress:
+        type: integer
+  UserList:
+    type: array
+    items:
+      $ref: "#/definitions/User4List"
+  SuccessfulOperation:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format
+  ApiUserResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/User'
+  ApiUserListResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/UserList'
+  UserLogin:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  UserLogout:
+    type: object
+    properties:
+      id:
+        type: string
+        
+        
+  Admin4Register: 
+    type: object
+    properties:
+      username: 
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+  Admin4List: 
+    type: object
+    properties:
+      adminId:
+        type: string
+      username: 
+        type: string
+      email:
+        type: string
+  Admin: 
+    type: object
+    properties:
+      adminId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+  AdminList:
+    type: array
+    items:
+      $ref: "#/definitions/Admin4List"
+  ApiAdminResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/Admin'
+  ApiAdminListResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/AdminList'
+  AdminLogin:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  AdminLogout:
+    type: object
+    properties:
+      id:
+        type: string
+        
+  Researcher4Register: 
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  Researcher4List: 
+    type: object
+    properties:
+      researcherId:
+        type: string
+      username:
+        type: string
+  Researcher: 
+    type: object
+    properties:
+      researcherId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+  ResearcherList:
+    type: array
+    items:
+      $ref: "#/definitions/Researcher4List"
+  ApiResearcherResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/Researcher'
+  ApiResearcherListResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/ResearcherList'
+  ResearcherLogin:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  ResearcherLogout:
+    type: object
+    properties:
+      id:
+        type: string
+  
+  
+
+# Added by API Auto Mocking Plugin
+# host: localhost:9008
+schemes:
+ - https
+ - http
+# Added by API Auto Mocking Plugin
+host: localhost:9008
+basePath: /

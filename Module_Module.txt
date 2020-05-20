@@ -1,0 +1,571 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a module api
+  version: 1.0.0
+  title: Module Api
+  contact:
+    email: kandoka@126.com
+
+paths:
+  /module:
+    post:
+      tags:
+      - module
+      summary: Create a module
+      description: This can only be done by the logged in admin.
+      operationId: createModule
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Module'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+            
+  /module/{moduleId}:
+    get:
+      tags:
+      - module
+      summary: Get a mudule info
+      description: This API is used for fetching a module info.
+      operationId: getModuleById
+      produces:
+      - application/json
+      parameters:
+      - name: moduleId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiModuleResponse'
+
+    put:
+      tags:
+      - module
+      summary: Update a module
+      description: This can only be done by the logged in admin.
+      operationId: updateModuleById
+      produces:
+      - application/json
+      parameters:
+      - name: moduleId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Module'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiModuleResponse'  
+
+    delete:
+      tags:
+      - module
+      summary: Delete a module
+      description: This can only be done by admin account.
+      operationId: deleteModuleById
+      produces:
+      - application/json
+      parameters:
+      - name: moduleId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+  /module/moduleList:
+    get:
+      tags:
+      - module
+      summary: query all of modules 
+      description: return a list of modules
+      operationId: getModuleList
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApiModuleListResponse'
+    
+  /part:
+    post:
+      tags:
+      - part
+      summary: Create a part
+      description: This can only be done by the logged in admin.
+      operationId: createPart
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Part'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+                
+    put:
+      tags:
+      - part
+      summary: Update a part
+      description: This can only be done by the logged in admin.
+      operationId: updatePartById
+      produces:
+      - application/json
+      parameters:
+      - name: partId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Part'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiPartResponse'  
+            
+  /part/{partId}:
+    get:
+      tags:
+      - part
+      summary: Get a part info
+      description: This API is used for fetching a part info.
+      operationId: getPartById
+      produces:
+      - application/json
+      parameters:
+      - name: partId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiPartResponse'
+
+
+    delete:
+      tags:
+      - part
+      summary: Delete a part
+      description: This can only be done by admin account.
+      operationId: deletePartById
+      produces:
+      - application/json
+      parameters:
+      - name: partId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+  /part/partList:
+    get:
+      tags:
+      - part
+      summary: query all of parts 
+      description: return a list of parts
+      operationId: getPartList
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApiPartListResponse'
+  
+  /question:
+    post:
+      tags:
+      - question
+      summary: Create a question
+      description: This can only be done by the logged in admin.
+      operationId: createQuestion
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Question4List'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+            
+
+    put:
+      tags:
+      - question
+      summary: Update a question
+      description: This can only be done by the logged in admin.
+      operationId: updateQuestionById
+      produces:
+      - application/json
+      parameters:
+      - name: questionId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Part'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiQuestionDetailsResponse'  
+  /question/{questionId}:
+    get:
+      tags:
+      - question
+      summary: Get a question info
+      description: This API is used for fetching a part info.
+      operationId: getQuestionById
+      produces:
+      - application/json
+      parameters:
+      - name: questionId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiQuestionDetailsResponse'
+    delete:
+      tags:
+      - question
+      summary: Delete a question
+      description: This can only be done by admin account.
+      operationId: deleteQuestionById
+      produces:
+      - application/json
+      parameters:
+      - name: questionId
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SuccessfulOperation'
+
+
+  /question/questionList/{moduleId}/{partId}/{page}/{size}:
+    get:
+      tags:
+      - question
+      summary: query questions of partiqular module and part, get paginate query results
+      description: Returns a list of questions
+      operationId: getQuestionList
+      produces:
+      - application/json
+      parameters:
+      - name: moduleId
+        in: path
+        description: ID of the module that questions belongs to 
+        required: true
+        type: integer
+      - name: partId
+        in: path
+        description: ID of the part that questions belongs to 
+        required: true
+        type: integer
+      - name: page
+        in: path
+        required: true
+        type: integer
+      - name: size
+        in: path
+        required: true
+        type: integer
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiQuestionListResponse'
+
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: http://petstore.swagger.io/oauth/dialog
+    flow: implicit
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  #questions list 
+  QuestionList: 
+    type: array
+    items:
+      $ref: "#/definitions/Question4List"
+  
+  #a question for list
+  Question4List:
+    type: object
+    properties:
+      question: 
+        $ref: "#/definitions/Question"
+      options:
+        $ref: "#/definitions/OptionList"
+  #options for a question
+  OptionList:
+    type: array
+    items:
+      $ref: "#/definitions/Option"
+  
+  #module list
+  ModuleList:
+    type: array
+    items:
+      $ref: '#/definitions/Module'
+        
+  #module
+  Module:
+    type: object
+    properties:
+      moduleId:
+        type: string
+      moduleDescription:
+        type: string
+      moduleName:
+        type: string
+      active: 
+        type: boolean
+  #part list
+  PartList:
+    type: array
+    items:
+      $ref: '#/definitions/Part'
+        
+  #part
+  Part:
+    type: object
+    properties:
+      partId:
+        type: string
+      moduleId:
+        type: string
+      order:
+        type: integer
+      active:
+        type: boolean
+      partName:
+        type: string
+      partDescription:
+        type: string
+        
+  #question
+  Question:
+    type: object
+    properties:
+      questionId:
+        type: string
+      partId:
+        type: string
+      type:
+        type: integer
+      active:
+        type: boolean
+      description1:
+        type: string
+      description2:
+        type: string
+      img1Path:
+        type: string
+      img2Path:
+        type: string
+        
+  #association for question and option
+  QuestionOption:
+    type: object
+    properties:
+      questionId:
+        type: string
+      optionId:
+        type: string
+      order:
+        type: integer
+  
+  Option:
+    type: object
+    properties:
+      optionId: 
+        type: string
+      optionName:
+        type: string
+
+  SuccessfulOperation:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format
+        
+  ApiQuestionListResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/QuestionList'
+
+  ApiModuleListResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/ModuleList'
+        
+  ApiModuleResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/Module'
+
+  ApiPartListResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/PartList'
+
+  ApiPartResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/Part'
+
+  ApiQuestionDetailsResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/Question4List'
+
+  ApiOptionResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        default: 200
+      flag:
+        type: boolean
+        default: true
+      message:
+        type: string
+        description: A response in json format    
+      data:
+        $ref: '#/definitions/Option'
+
+schemes:
+ - https
+ - http
+# Added by API Auto Mocking Plugin
+# basePath: /
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /IDecide/Question_Module_Module/1.0.0
+# Added by API Auto Mocking Plugin
+basePath: /IDecide/Question_Module_Survey/1.0.0
